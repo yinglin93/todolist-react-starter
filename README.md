@@ -20,12 +20,12 @@ git clone https://github.com/yinglin93/todolist-react-starter.git
 npm install
 ```
 
-* Start experiencing it
+* Start experiencing it (Local: http://localhost:3000)
 ```
 npm start
 ```
 
-*Terminate the application
+* Terminate the application
 ```
 Ctrl+c
 ```
