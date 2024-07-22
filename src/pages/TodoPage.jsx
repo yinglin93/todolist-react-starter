@@ -1,67 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Footer, Header, TodoCollection, TodoInput } from 'components';
+import { getTodos, createTodo } from '../api/todos';
 
-const dummyTodos = [
-  {
-    title: 'Learn react-router',
-    isDone: true,
-    id: 1,
-  },
-  {
-    title: 'Learn to create custom hooks',
-    isDone: false,
-    id: 2,
-  },
-  {
-    title: 'Learn to use context',
-    isDone: true,
-    id: 3,
-  },
-  {
-    title: 'Learn to implement auth',
-    isDone: false,
-    id: 4,
-  },
-];
 
 const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
-  const [todos, setTodos] = useState(dummyTodos);
+  const [todos, setTodos] = useState([]);
 
   const handleChange = (value) => setInputValue(value);
-  const handleAddTodo = () => {
+  const handleAddTodo = async () => {
     if (inputValue.length === 0) {
       return
     };
+    try{
+      const data = await createTodo({
+      "title": inputValue,
+      "isDone": false,
+      })
 
-    setTodos((prevtodos) => {
-      return [
-        ...prevtodos,
-        {
-          id: Math.random()*100,
-          title: inputValue,
-          isDone: false,
-      }];
-    });
+      setTodos((prevtodos) => {
+        return [
+          ...prevtodos,
+          {
+            id: data.id,
+            title: data.title,
+            isDone: data.isDone,
+            isEdit: false
+        }];
+      });
 
-    setInputValue('');
+      setInputValue('');
+    } catch(error) {
+      console.error(error);
+    }
   }
-  const handleKeyDown = () => {
+  const handleKeyDown = async () => {
     if (inputValue.length === 0) {
       return;
     }
 
-    setTodos((prevtodos) => {
-      return [
-        ...prevtodos,
-        {
-          id: Math.random()*100,
-          title: inputValue,
-          isDone: false,
-        }];
-    });
+    try{
+      const data = await createTodo({
+      "title": inputValue,
+      "isDone": false,
+      })
 
-    setInputValue('');
+      setTodos((prevtodos) => {
+        return [
+          ...prevtodos,
+          {
+            id: data.id,
+            title: data.title,
+            isDone: data.isDone,
+            isEdit: false,
+          }];
+      });
+
+      setInputValue('');
+    } catch(error) {
+      console.error(error);
+    }
   }
 
   const handleToggleDone = (id) => {
@@ -111,6 +109,18 @@ const TodoPage = () => {
       return prevTodos.filter((todo) => todo.id !== id);
     });
   };
+
+  useEffect(() => {
+    const getTodosAsync = async () => {
+      try {
+        const todos = await getTodos();
+        setTodos(todos.map((todo) => ({ ...todo, isEdit: false })));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getTodosAsync();
+  }, []);
 
   return (
     <div>
