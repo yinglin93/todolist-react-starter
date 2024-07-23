@@ -7,7 +7,7 @@
     },
     {
       "title": "Learn to create custom hooks",
-      "isDone": false,
+      "isDone": true,
       "id": 2
     },
     {
@@ -16,7 +16,7 @@
       "id": 4
     },
     {
-      "title": "Learn to know more about myself ",
+      "title": "勉強しなさい！",
       "isDone": false,
       "id": 5
     },
@@ -24,11 +24,6 @@
       "title": "have a good day!",
       "isDone": false,
       "id": 6
-    },
-    {
-      "title": "yoyoyo",
-      "isDone": false,
-      "id": 7
     }
   ]
 }
