@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SignUpPage = () => {
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -22,26 +22,26 @@ const SignUpPage = () => {
 
       <AuthInputContainer>
         <AuthInput
-          label="帳號"
-          placeholder="請輸入帳號"
-          value={userName}
-          onChange={(inputUserName) => setUserName(inputUserName)}
+          label={"帳號"}
+          placeholder={"請輸入帳號"}
+          value={username}
+          onChange={(inputUsername) => setUsername(inputUsername)}
         />
       </AuthInputContainer>
 
       <AuthInputContainer>
         <AuthInput
-          label="Email"
-          placeholder="請輸入 email"
+          label={"Email"}
+          placeholder={"請輸入 email"}
           value={email}
-          onChange={(inputEmail) => setPassword(inputEmail)}
+          onChange={(inputEmail) => setEmail(inputEmail)}
         />
       </AuthInputContainer>
 
       <AuthInputContainer>
         <AuthInput
-          label="密碼"
-          placeholder="請輸入密碼"
+          label={"密碼"}
+          placeholder={"請輸入密碼"}
           value={password}
           onChange={(inputPassword) => setPassword(inputPassword)}
           type="password"
