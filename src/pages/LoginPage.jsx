@@ -10,11 +10,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { login } from '../api/auth';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     if (username.length === 0) {
@@ -36,7 +38,9 @@ const LoginPage = () => {
         timer: 1000,
         position: 'top'
       });
-    } else {
+      navigate('/todos');
+      return;
+    } 
       Swal.fire({
         title: '登入失敗',
         icon: 'error',
@@ -44,8 +48,6 @@ const LoginPage = () => {
         timer: 1000,
         position: 'top',
       });
-    }
-
   };
 
   return (
