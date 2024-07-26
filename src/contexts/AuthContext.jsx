@@ -1,4 +1,4 @@
-import { checkPermission, login, signup } from '../api/auth';
+import { checkPermission, login, register } from '../api/auth';
 import { useState, createContext, useEffect, useContext } from 'react';
 import * as jwt from 'jsonwebtoken';
 import { useLocation } from 'react-router-dom';
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
           name: payload.name,
         },
         register: async (data) => {
-          const { success, authToken } = await signup({
+          const { success, authToken } = await register({
             username: data.username,
             email: data.email,
             password: data.password,
