@@ -19,7 +19,7 @@ export const login = async ({ username, password }) => {
   }
 };
 
-export const signup = async ({ username, email, password }) => {
+export const register = async ({ username, email, password }) => {
   try {
     const { data } = await axios.post(`${authURL}/register`, {
       username,
@@ -35,7 +35,7 @@ export const signup = async ({ username, email, password }) => {
     } 
       return data;
   } catch(error) {
-    console.error('[Signup Failed]:', error)
+    console.error('[Register Failed]:', error)
   }  
 }
 
